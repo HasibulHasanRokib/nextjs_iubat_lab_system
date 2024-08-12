@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -7,27 +9,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import prisma from "@/lib/db";
 
-export default async function AllStudents() {
-  const students = await prisma.student.findMany({
-    select: {
-      id: true,
-      fullName: true,
-      studentId: true,
-      program: true,
-      email: true,
-      phoneNumber: true,
-      gender: true,
-      createdAt: true,
-    },
-    orderBy: { createdAt: "desc" },
-  });
+import { Search } from "lucide-react";
+import { Student } from "@prisma/client";
 
+export default async function AllStudents({
+  students,
+}: {
+  students: Student[];
+}) {
   return (
     <>
       <Table className="border">
-        <TableCaption>A list of your all students.</TableCaption>
+        <TableCaption></TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>No.</TableHead>
